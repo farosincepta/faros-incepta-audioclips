@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Fanari Voices</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Voice clips for $1 each. Intros, voicemail greetings, sports calls and more, in English and Greek. Instant download.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Advent+Pro:wght@500;600;700&family=Commissioner:wght@400;500;600&family=Fira+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: harbor-radio tracklist — a lit masthead, then one scannable list of clips like a broadcast log; cart slides in from the side. */
+:root{
+  --bg:#f2f5f5; --surface:#ffffff; --ink:#10283a; --muted:#566a75; --line:#d5dee2;
+  --sea:#1b5a78; --beam:#e3992a; --beam-soft:#fbecd2; --ok:#2f7d4f;
+  --display:"Advent Pro","Commissioner",system-ui,sans-serif;
+  --body:"Commissioner",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"Fira Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0b1820; --surface:#112430; --ink:#e7eef0; --muted:#94a8b2; --line:#22394a;
+  --sea:#62b3d8; --beam:#f1b04b; --beam-soft:#2e2615; --ok:#6cc58f; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0b1820; --surface:#112430; --ink:#e7eef0; --muted:#94a8b2; --line:#22394a;
+  --sea:#62b3d8; --beam:#f1b04b; --beam-soft:#2e2615; --ok:#6cc58f; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 var(--body);margin:0}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--beam);outline-offset:2px;border-radius:6px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.05}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+/* Top bar */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:12px;padding-block:10px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:700;font-size:1.35rem;letter-spacing:.01em;margin-right:auto;text-decoration:none;color:var(--ink)}
+.brand svg{width:26px;height:26px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:2px;background:var(--surface)}
+.seg button{border:0;background:none;padding:5px 11px;border-radius:999px;font-size:.85rem;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.cartbtn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--ink);background:var(--ink);color:var(--bg);border-radius:999px;padding:7px 14px;font-weight:600;font-size:.9rem}
+.cartbtn .n{background:var(--beam);color:#10283a;border-radius:999px;min-width:22px;padding:0 6px;text-align:center;font-size:.8rem}
+
+/* Masthead */
+.mast{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.mast .wrap{position:relative;padding-block:56px 40px;display:grid;gap:18px}
+.beam{position:absolute;right:-180px;top:-260px;width:760px;height:760px;border-radius:50%;
+  background:conic-gradient(from 200deg,transparent 0 300deg,color-mix(in srgb,var(--beam) 38%,transparent) 330deg,transparent 360deg);
+  animation:sweep 9s linear infinite;pointer-events:none;opacity:.9}
+@keyframes sweep{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.beam{animation:none;transform:rotate(-20deg)}}
+.eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sea)}
+.mast h1{font-size:clamp(2.6rem,7vw,4.8rem);font-weight:700;max-width:12ch}
+.mast h1 em{font-style:normal;color:var(--beam)}
+.mast p{max-width:52ch;color:var(--muted);margin:0;font-size:1.08rem}
+.facts{display:flex;flex-wrap:wrap;gap:8px 22px;margin:6px 0 0;padding:0;list-style:none;font-size:.92rem}
+.facts li{display:flex;align-items:center;gap:8px}
+.facts li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--beam)}
+
+/* Filters */
+.filters{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding-block:22px 12px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;flex:1 1 420px;min-width:0}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 13px;font-size:.88rem}
+.chip[aria-pressed="true"]{border-color:var(--sea);background:var(--sea);color:var(--bg)}
+.search{flex:1 1 220px;min-width:0;display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:0 12px}
+.search input{border:0;background:none;outline:none;color:var(--ink);font:inherit;padding:9px 0;width:100%;min-width:0}
+.count{font-size:.85rem;color:var(--muted);padding-bottom:8px}
+
+/* Clip log */
+.log{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.clip{display:grid;grid-template-columns:48px minmax(0,1fr) minmax(120px,220px) auto;gap:16px;align-items:center;padding:14px 4px;border-bottom:1px solid var(--line)}
+.clip.playing{background:var(--beam-soft)}
+.play{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--ink);background:var(--surface);display:grid;place-items:center}
+.play svg{width:16px;height:16px;fill:currentColor}
+.clip.playing .play{background:var(--ink);color:var(--bg)}
+.meta{min-width:0}
+.meta h3{font-family:var(--body);font-weight:600;font-size:1.02rem;line-height:1.3}
+.meta .line{font-size:.92rem;color:var(--muted);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tags{display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:6px;font-size:.78rem;color:var(--muted)}
+.tags .id{color:var(--sea)}
+.lang{border:1px solid var(--line);border-radius:4px;padding:0 5px;font-family:var(--mono);font-size:.72rem}
+.wave{position:relative;height:36px;color:var(--line)}
+.wave svg{width:100%;height:100%;display:block}
+.wave .fill{position:absolute;inset:0;color:var(--beam);clip-path:inset(0 100% 0 0)}
+.buy{display:flex;align-items:center;gap:12px}
+.price{font-family:var(--mono);font-weight:500}
+.add{border:1.5px solid var(--ink);background:none;border-radius:8px;padding:7px 12px;font-weight:600;font-size:.88rem;white-space:nowrap}
+.add.in{background:var(--ok);border-color:var(--ok);color:var(--bg)}
+.empty{padding:40px 4px;color:var(--muted)}
+@media (max-width:720px){
+  .clip{grid-template-columns:44px minmax(0,1fr);gap:10px 12px}
+  .wave{grid-column:2;height:26px}
+  .buy{grid-column:2;justify-content:space-between}
+}
+
+/* Info */
+.info{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:28px;padding-block:56px}
+.info h2{font-size:1.6rem;margin-bottom:10px}
+.info p,.info li{color:var(--muted);font-size:.95rem}
+.info ol,.info ul{padding-left:1.2em;margin:0;display:grid;gap:6px}
+footer{border-top:1px solid var(--line);font-size:.85rem;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;padding-block:22px}
+
+/* Cart drawer */
+.scrim{position:fixed;inset:0;background:rgb(6 16 22 / .45);z-index:20}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--surface);z-index:21;display:flex;flex-direction:column;
+  padding:calc(18px + env(safe-area-inset-top,0px)) max(20px,env(safe-area-inset-right,0px)) calc(18px + env(safe-area-inset-bottom,0px)) 20px;border-left:1px solid var(--line)}
+.drawer header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.drawer h2{font-size:1.7rem}
+.x{border:0;background:none;font-size:1.6rem;line-height:1;padding:4px 8px}
+.items{list-style:none;margin:0;padding:0;overflow:auto;flex:1;min-height:0}
+.items li{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:.93rem}
+.items li span:first-child{min-width:0}
+.rm{border:0;background:none;color:var(--muted);font-size:.85rem;text-decoration:underline}
+.total{display:flex;justify-content:space-between;font-size:1.1rem;font-weight:600;padding:14px 0}
+.primary{width:100%;border:0;background:var(--beam);color:#10283a;font-weight:700;font-size:1rem;border-radius:10px;padding:13px}
+.primary:disabled{opacity:.45;cursor:not-allowed}
+.small{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+
+/* Modal + download view */
+.modal{position:fixed;inset:0;z-index:30;display:grid;place-items:center;padding:16px;background:rgb(6 16 22 / .55)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;width:min(460px,100%);display:grid;gap:12px}
+.card h2{font-size:1.6rem}
+.ghost{border:1px solid var(--line);background:none;border-radius:10px;padding:11px;width:100%}
+.demo{font-size:.82rem;background:var(--beam-soft);border-radius:8px;padding:8px 10px}
+.done{padding-block:48px 64px;display:grid;gap:18px}
+.done h1{font-size:clamp(2.2rem,6vw,3.6rem)}
+.dl{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.dl li{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line)}
+.dl a,.dl button{border:1.5px solid var(--ink);background:var(--ink);color:var(--bg);text-decoration:none;border-radius:8px;padding:8px 14px;font-weight:600;font-size:.9rem}
+.note{font-size:.85rem;color:var(--sea)}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;z-index:40;font-size:.9rem;max-width:calc(100% - 32px)}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#" id="home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M13 9h6l2 20H11z" fill="var(--ink)"/><rect x="12" y="4" width="8" height="5" rx="1" fill="var(--beam)"/><path d="M20 6.5 31 2v9z M12 6.5 1 2v9z" fill="var(--beam)" opacity=".45"/><rect x="11.6" y="15" width="8.8" height="2.2" fill="var(--bg)"/><rect x="11" y="22" width="10" height="2.2" fill="var(--bg)"/></svg>
+      Fanari Voices
+    </a>
+    <div class="seg" role="group" aria-label="Language">
+      <button id="ui-en" data-ui="en" aria-pressed="true">EN</button>
+      <button id="ui-el" data-ui="el" aria-pressed="false">ΕΛ</button>
+    </div>
+    <button class="cartbtn" id="openCart"><span data-t="cart">Cart</span><span class="n" id="cartN">0</span></button>
+  </div>
+</header>
+
+<main id="shop">
+  <section class="mast">
+    <div class="beam" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="eyebrow" data-t="eyebrow">AI voice clips · English &amp; Greek</div>
+      <h1 data-t="h1" data-html>Ready-made voice clips. <em>$1 each.</em></h1>
+      <p data-t="lede">Intros, voicemail greetings, stadium calls and stream alerts. Listen to the preview, pay, and download the full clip right away.</p>
+      <ul class="facts">
+        <li data-t="f1">Instant download</li>
+        <li data-t="f2">Use in your videos, podcasts and phone lines</li>
+        <li data-t="f3">Secure payment by Stripe</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="filters">
+      <div class="chips" id="cats" role="group" aria-label="Category"></div>
+      <div class="seg" role="group" aria-label="Clip language" id="clipLang">
+        <button id="cl-all" data-cl="all" aria-pressed="true" data-t="all">All</button>
+        <button id="cl-en" data-cl="en" aria-pressed="false">English</button>
+        <button id="cl-el" data-cl="el" aria-pressed="false">Ελληνικά</button>
+      </div>
+      <label class="search"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-4-4" stroke="currentColor" stroke-width="2"/></svg>
+        <input id="q" type="search" placeholder="Search clips" data-tp="search" aria-label="Search clips"></label>
+    </div>
+    <div class="count" id="count"></div>
+    <ul class="log" id="log"></ul>
+  </div>
+
+  <div class="wrap info">
+    <div>
+      <h2 data-t="howH">How it works</h2>
+      <ol>
+        <li data-t="how1">Press play to hear a short preview.</li>
+        <li data-t="how2">Add the clips you want to your cart.</li>
+        <li data-t="how3">Pay $1 per clip through Stripe.</li>
+        <li data-t="how4">Download the full-quality files on the next page.</li>
+      </ol>
+    </div>
+    <div>
+      <h2 data-t="licH">What you can do with a clip</h2>
+      <ul>
+        <li data-t="lic1">Use it in your own videos, podcasts, streams, games and ads.</li>
+        <li data-t="lic2">Use it on your business phone line or voicemail.</li>
+        <li data-t="lic3">Don't resell or share the clip file on its own.</li>
+      </ul>
+    </div>
+    <div>
+      <h2 data-t="faqH">Good to know</h2>
+      <ul>
+        <li data-t="faq1">Previews carry a soft tone. The file you buy is clean.</li>
+        <li data-t="faq2">Your download link works for 24 hours. Save the files to your device.</li>
+        <li data-t="faq3">Voices are AI-generated with ElevenLabs.</li>
+      </ul>
+    </div>
+  </div>
+</main>
+
+<main id="downloads" class="wrap done" hidden>
+  <div class="eyebrow" data-t="paid">Payment received</div>
+  <h1 data-t="dlH">Your clips are ready</h1>
+  <p class="small" id="dlExp" style="margin:0;font-size:.95rem"></p>
+  <ul class="dl" id="dlList"></ul>
+  <p class="note" id="dlNote" hidden></p>
+  <div><button class="ghost" id="back" style="width:auto;padding:10px 18px" data-t="back">Back to the shop</button></div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Fanari Ventures LLC · Illinois, USA</span>
+    <span><span data-t="help">Questions:</span> <span class="mono">fanariventures@outlook.com</span></span>
+  </div>
+</footer>
+
+<div class="scrim" id="scrim" hidden></div>
+<aside class="drawer" id="drawer" hidden aria-label="Cart">
+  <header><h2 data-t="cart">Cart</h2><button class="x" id="closeCart" aria-label="Close cart">×</button></header>
+  <ul class="items" id="items"></ul>
+  <div class="total"><span data-t="total">Total</span><span class="mono" id="total">$0.00</span></div>
+  <button class="primary" id="checkout" data-t="checkout">Checkout with Stripe</button>
+  <p class="small" data-t="secure">You'll pay on Stripe's secure page. We never see your card details.</p>
+</aside>
+
+<div class="modal" id="demoPay" hidden role="dialog" aria-modal="true" aria-labelledby="dpH">
+  <div class="card">
+    <h2 id="dpH" data-t="dpH">Stripe Checkout</h2>
+    <p class="demo" data-t="dpDemo">Preview mode. On the live site this step opens Stripe's secure payment page. No payment is taken here.</p>
+    <div class="total" style="padding:4px 0"><span id="dpItems"></span><span class="mono" id="dpTotal"></span></div>
+    <button class="primary" id="dpPay" data-t="dpPay">Simulate successful payment</button>
+    <button class="ghost" id="dpCancel" data-t="cancel">Cancel</button>
+  </div>
+</div>
+
+<div class="toast" id="toast" hidden role="status"></div>
+
+<script>
+/* ---------- Catalog (on the live site this comes from clips.json) ---------- */
+const SAMPLE_CLIPS = [
+ {id:"FV-0001",cat:"intro",lang:"en",title:"Welcome back to the channel",voice:"Warm male",secs:5,text:"Hey everyone, welcome back to the channel. Let's get into it."},
+ {id:"FV-0002",cat:"intro",lang:"en",title:"Like and subscribe outro",voice:"Bright female",secs:6,text:"Thanks for watching! If you enjoyed this, hit like and subscribe. See you next time."},
+ {id:"FV-0003",cat:"intro",lang:"el",title:"Καλώς ήρθατε στο κανάλι",voice:"Ζεστή ανδρική",secs:5,text:"Γεια σας και καλώς ήρθατε ξανά στο κανάλι. Πάμε να ξεκινήσουμε."},
+ {id:"FV-0004",cat:"intro",lang:"en",title:"Calm podcast intro",voice:"Soft female",secs:7,text:"You're listening to the show. Grab a coffee, sit back, and let's talk."},
+ {id:"FV-0005",cat:"business",lang:"en",title:"After-hours voicemail",voice:"Professional female",secs:9,text:"Thank you for calling. Our office is closed right now. Please leave your name and number after the tone, and we'll call you back."},
+ {id:"FV-0006",cat:"business",lang:"el",title:"Τηλεφωνητής εκτός ωραρίου",voice:"Επαγγελματική γυναικεία",secs:8,text:"Ευχαριστούμε που καλέσατε. Το γραφείο μας είναι κλειστό. Αφήστε το μήνυμά σας μετά τον ήχο."},
+ {id:"FV-0007",cat:"business",lang:"en",title:"Thanks for holding",voice:"Professional male",secs:6,text:"Thanks for holding. Your call is important to us. Someone will be with you shortly."},
+ {id:"FV-0008",cat:"business",lang:"el",title:"Ευχαριστούμε για την αναμονή",voice:"Επαγγελματική ανδρική",secs:6,text:"Ευχαριστούμε για την αναμονή. Σε λίγο θα σας εξυπηρετήσουμε."},
+ {id:"FV-0009",cat:"sports",lang:"en",title:"Goal call, stadium style",voice:"Stadium announcer",secs:5,text:"Goooal! What a strike! The crowd is on its feet!"},
+ {id:"FV-0010",cat:"sports",lang:"el",title:"Γκολ! Εκφωνητής γηπέδου",voice:"Εκφωνητής γηπέδου",secs:5,text:"Γκοοολ! Τι σουτ! Το γήπεδο σηκώθηκε όρθιο!"},
+ {id:"FV-0011",cat:"sports",lang:"en",title:"Kick-off announcement",voice:"Stadium announcer",secs:7,text:"Ladies and gentlemen, the teams are on the pitch. Kick-off is moments away!"},
+ {id:"FV-0012",cat:"sports",lang:"el",title:"Οι ενδεκάδες των ομάδων",voice:"Εκφωνητής γηπέδου",secs:6,text:"Κυρίες και κύριοι, ακολουθούν οι ενδεκάδες των δύο ομάδων."},
+ {id:"FV-0013",cat:"gaming",lang:"en",title:"Stream starting soon",voice:"Hype male",secs:5,text:"Stream starting soon! Grab your snacks, we're going live in a minute."},
+ {id:"FV-0014",cat:"gaming",lang:"en",title:"Round won",voice:"Arena announcer",secs:3,text:"Round won! Flawless!"},
+ {id:"FV-0015",cat:"events",lang:"en",title:"Please take your seats",voice:"Event MC",secs:6,text:"Ladies and gentlemen, please take your seats. The program is about to begin."},
+ {id:"FV-0016",cat:"events",lang:"el",title:"Χρόνια πολλά!",voice:"Χαρούμενη γυναικεία",secs:4,text:"Χρόνια πολλά! Να τα εκατοστήσεις, με υγεία και χαρά!"},
+ {id:"FV-0017",cat:"events",lang:"en",title:"Happy birthday announcer",voice:"Event MC",secs:5,text:"And now, put your hands together for the birthday star of the night!"}
+];
+const PRICE_CENTS = 100;
+const MAX_CART = 20;
+
+/* Live on the real domain (or local dev); preview mode everywhere else. */
+const LIVE = /(^|\.)fanariventures\.com$/.test(location.hostname) || location.hostname === "localhost" || location.hostname === "127.0.0.1";
+
+/* ---------- Words ---------- */
+const T = {
+ en:{cart:"Cart",eyebrow:"AI voice clips · English & Greek",h1:"Ready-made voice clips. <em>$1 each.</em>",
+  lede:"Intros, voicemail greetings, stadium calls and stream alerts. Listen to the preview, pay, and download the full clip right away.",
+  f1:"Instant download",f2:"Use in your videos, podcasts and phone lines",f3:"Secure payment by Stripe",
+  all:"All",search:"Search clips",howH:"How it works",how1:"Press play to hear a short preview.",how2:"Add the clips you want to your cart.",
+  how3:"Pay $1 per clip through Stripe.",how4:"Download the full-quality files on the next page.",
+  licH:"What you can do with a clip",lic1:"Use it in your own videos, podcasts, streams, games and ads.",lic2:"Use it on your business phone line or voicemail.",lic3:"Don't resell or share the clip file on its own.",
+  faqH:"Good to know",faq1:"Previews carry a soft tone. The file you buy is clean.",faq2:"Your download link works for 24 hours. Save the files to your device.",faq3:"Voices are AI-generated with ElevenLabs.",
+  paid:"Payment received",dlH:"Your clips are ready",back:"Back to the shop",help:"Questions:",total:"Total",checkout:"Checkout with Stripe",
+  secure:"You'll pay on Stripe's secure page. We never see your card details.",dpH:"Stripe Checkout",
+  dpDemo:"Preview mode. On the live site this step opens Stripe's secure payment page. No payment is taken here.",
+  dpPay:"Simulate successful payment",cancel:"Cancel",add:"Add",added:"In cart",remove:"Remove",download:"Download",
+  emptyCart:"Your cart is empty. Add a clip to get started.",noMatch:"No clips match. Try another category or search.",
+  shown:(n)=>`${n} clip${n===1?"":"s"}`,items:(n)=>`${n} clip${n===1?"":"s"}`,
+  cats:{all:"All",intro:"Intros & outros",business:"Business & phone",sports:"Sports",gaming:"Gaming & streaming",events:"Events & greetings"},
+  exp:(d)=>`Download links work until ${d}. Stripe has emailed you a receipt.`,
+  demoDl:(id)=>`Preview mode: on the live site this button downloads the full file for ${id}.`,
+  max:`You can buy up to ${MAX_CART} clips at a time.`,addedToast:"Added to cart",err:"Something went wrong. Please try again in a moment.",
+  expired:"This download link has expired. Email support with your receipt and we'll help.",
+  noSpeech:"Preview audio isn't available in this browser."},
+ el:{cart:"Καλάθι",eyebrow:"Φωνητικά κλιπ AI · Ελληνικά & Αγγλικά",h1:"Έτοιμα φωνητικά κλιπ. <em>$1 το ένα.</em>",
+  lede:"Εισαγωγές, μηνύματα τηλεφωνητή, εκφωνήσεις γηπέδου και ειδοποιήσεις για streams. Ακούστε το δείγμα, πληρώστε και κατεβάστε αμέσως το πλήρες κλιπ.",
+  f1:"Άμεση λήψη",f2:"Για βίντεο, podcast και τηλεφωνικές γραμμές",f3:"Ασφαλής πληρωμή μέσω Stripe",
+  all:"Όλα",search:"Αναζήτηση κλιπ",howH:"Πώς λειτουργεί",how1:"Πατήστε play για να ακούσετε ένα σύντομο δείγμα.",how2:"Προσθέστε τα κλιπ που θέλετε στο καλάθι.",
+  how3:"Πληρώστε $1 ανά κλιπ μέσω Stripe.",how4:"Κατεβάστε τα αρχεία σε πλήρη ποιότητα στην επόμενη σελίδα.",
+  licH:"Τι μπορείτε να κάνετε με ένα κλιπ",lic1:"Να το χρησιμοποιήσετε σε δικά σας βίντεο, podcast, streams, παιχνίδια και διαφημίσεις.",lic2:"Να το βάλετε στον τηλεφωνητή της επιχείρησής σας.",lic3:"Δεν επιτρέπεται η μεταπώληση ή διανομή του αρχείου ως έχει.",
+  faqH:"Καλό να ξέρετε",faq1:"Τα δείγματα έχουν έναν απαλό ήχο. Το αρχείο που αγοράζετε είναι καθαρό.",faq2:"Ο σύνδεσμος λήψης ισχύει για 24 ώρες. Αποθηκεύστε τα αρχεία στη συσκευή σας.",faq3:"Οι φωνές δημιουργούνται με AI μέσω ElevenLabs.",
+  paid:"Η πληρωμή ολοκληρώθηκε",dlH:"Τα κλιπ σας είναι έτοιμα",back:"Επιστροφή στο κατάστημα",help:"Ερωτήσεις:",total:"Σύνολο",checkout:"Πληρωμή με Stripe",
+  secure:"Θα πληρώσετε στην ασφαλή σελίδα της Stripe. Δεν βλέπουμε ποτέ τα στοιχεία της κάρτας σας.",dpH:"Πληρωμή Stripe",
+  dpDemo:"Λειτουργία προεπισκόπησης. Στο κανονικό site αυτό το βήμα ανοίγει την ασφαλή σελίδα πληρωμής της Stripe. Δεν γίνεται χρέωση εδώ.",
+  dpPay:"Προσομοίωση επιτυχούς πληρωμής",cancel:"Ακύρωση",add:"Προσθήκη",added:"Στο καλάθι",remove:"Αφαίρεση",download:"Λήψη",
+  emptyCart:"Το καλάθι σας είναι άδειο. Προσθέστε ένα κλιπ για να ξεκινήσετε.",noMatch:"Δεν βρέθηκαν κλιπ. Δοκιμάστε άλλη κατηγορία ή αναζήτηση.",
+  shown:(n)=>`${n} κλιπ`,items:(n)=>`${n} κλιπ`,
+  cats:{all:"Όλα",intro:"Εισαγωγές & κλεισίματα",business:"Επιχειρήσεις & τηλέφωνο",sports:"Αθλητικά",gaming:"Gaming & streaming",events:"Εκδηλώσεις & ευχές"},
+  exp:(d)=>`Οι σύνδεσμοι λήψης ισχύουν έως ${d}. Η Stripe σας έστειλε απόδειξη με email.`,
+  demoDl:(id)=>`Λειτουργία προεπισκόπησης: στο κανονικό site αυτό το κουμπί κατεβάζει το πλήρες αρχείο ${id}.`,
+  max:`Μπορείτε να αγοράσετε έως ${MAX_CART} κλιπ τη φορά.`,addedToast:"Προστέθηκε στο καλάθι",err:"Κάτι πήγε στραβά. Δοκιμάστε ξανά σε λίγο.",
+  expired:"Ο σύνδεσμος λήψης έχει λήξει. Στείλτε email με την απόδειξή σας και θα σας βοηθήσουμε.",
+  noSpeech:"Το δείγμα ήχου δεν είναι διαθέσιμο σε αυτόν τον browser."}
+};
+
+/* ---------- State ---------- */
+const store = {get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch{return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch{}}};
+const S = {
+  ui: store.get("fv.ui", (navigator.language||"").toLowerCase().startsWith("el") ? "el" : "en"),
+  cat:"all", cl:"all", q:"",
+  cart: store.get("fv.cart", []),
+  clips: SAMPLE_CLIPS
+};
+const $ = (s)=>document.querySelector(s);
+const money = (c)=>"$"+(c/100).toFixed(2);
+const t = (k)=>T[S.ui][k];
+const byId = (id)=>S.clips.find(c=>c.id===id);
+const esc = (s)=>String(s).replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
+
+/* Waveform from the clip id, so each clip has its own shape */
+function wave(id, secs){
+  let h=0; for(const ch of id) h=(h*31+ch.charCodeAt(0))>>>0;
+  const n=48, bars=[];
+  for(let i=0;i<n;i++){ h=(h*1103515245+12345)>>>0; const env=Math.sin(Math.PI*(i+.5)/n)**.6;
+    const v=Math.max(.12,((h>>>8)%1000)/1000*env); const bh=v*34; bars.push(`<rect x="${i*5}" y="${(36-bh)/2}" width="3" height="${bh}" rx="1.5" fill="currentColor"/>`); }
+  const svg=`<svg viewBox="0 0 240 36" preserveAspectRatio="none" aria-hidden="true">${bars.join("")}</svg>`;
+  return `<div class="wave">${svg}<div class="fill">${svg}</div></div>`;
+}
+const PLAY = `<svg viewBox="0 0 16 16"><path d="M4 2.5v11l9-5.5z"/></svg>`;
+const STOP = `<svg viewBox="0 0 16 16"><rect x="3.5" y="3.5" width="9" height="9" rx="1"/></svg>`;
+const dur = (s)=>`0:${String(s).padStart(2,"0")}`;
+
+/* ---------- Render ---------- */
+function renderText(){
+  document.documentElement.lang = S.ui;
+  document.querySelectorAll("[data-t]").forEach(el=>{ const v=t(el.dataset.t); if(typeof v==="string"){ if(el.hasAttribute("data-html")) el.innerHTML=v; else el.textContent=v; }});
+  document.querySelectorAll("[data-tp]").forEach(el=>el.placeholder=t(el.dataset.tp));
+  document.querySelectorAll("[data-ui]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.ui===S.ui));
+}
+function renderCats(){
+  const keys=["all","intro","business","sports","gaming","events"];
+  $("#cats").innerHTML = keys.map(k=>`<button class="chip" id="cat-${k}" data-cat="${k}" aria-pressed="${S.cat===k}">${esc(t("cats")[k])}</button>`).join("");
+}
+function renderLog(){
+  const q=S.q.trim().toLowerCase();
+  const list=S.clips.filter(c=>(S.cat==="all"||c.cat===S.cat)&&(S.cl==="all"||c.lang===S.cl)&&(!q||(c.title+" "+c.text+" "+c.voice+" "+c.id).toLowerCase().includes(q)));
+  $("#count").textContent = t("shown")(list.length);
+  $("#log").innerHTML = list.length ? list.map(c=>{
+    const inCart=S.cart.includes(c.id);
+    return `<li class="clip${playing&&playing.id===c.id?" playing":""}" data-id="${c.id}">
+      <button class="play" data-play="${c.id}" aria-label="Preview ${esc(c.title)}">${playing&&playing.id===c.id?STOP:PLAY}</button>
+      <div class="meta"><h3>${esc(c.title)}</h3><div class="line">“${esc(c.text)}”</div>
+        <div class="tags"><span class="mono id">${c.id}</span><span class="lang">${c.lang.toUpperCase()}</span><span>${esc(c.voice)}</span><span class="mono">${dur(c.secs)}</span><span>${esc(t("cats")[c.cat]||c.cat)}</span></div></div>
+      ${wave(c.id,c.secs)}
+      <div class="buy"><span class="price">${money(c.price_cents||PRICE_CENTS)}</span>
+        <button class="add${inCart?" in":""}" data-add="${c.id}" aria-pressed="${inCart}">${inCart?t("added"):t("add")}</button></div>
+    </li>`;}).join("") : `<li class="empty">${esc(t("noMatch"))}</li>`;
+}
+function renderCart(){
+  S.cart = S.cart.filter(byId);
+  store.set("fv.cart", S.cart);
+  $("#cartN").textContent = S.cart.length;
+  $("#items").innerHTML = S.cart.length ? S.cart.map(id=>{const c=byId(id);
+    return `<li><span><span class="mono" style="color:var(--sea)">${c.id}</span> ${esc(c.title)}</span><span style="display:flex;gap:10px;align-items:center"><span class="mono">${money(c.price_cents||PRICE_CENTS)}</span><button class="rm" data-rm="${id}">${t("remove")}</button></span></li>`}).join("")
+    : `<li style="color:var(--muted)">${esc(t("emptyCart"))}</li>`;
+  $("#total").textContent = money(cartTotal());
+  $("#checkout").disabled = !S.cart.length;
+}
+const cartTotal = ()=>S.cart.reduce((s,id)=>s+(byId(id).price_cents||PRICE_CENTS),0);
+function renderAll(){ renderText(); renderCats(); renderLog(); renderCart(); }
+
+function toast(msg){ const el=$("#toast"); el.textContent=msg; el.hidden=false; clearTimeout(toast.t); toast.t=setTimeout(()=>el.hidden=true,2600); }
+
+/* ---------- Preview playback ---------- */
+let playing=null;
+function stopPreview(){
+  if(!playing) return;
+  try{ playing.audio && playing.audio.pause(); }catch{}
+  try{ window.speechSynthesis && speechSynthesis.cancel(); }catch{}
+  cancelAnimationFrame(playing.raf);
+  const id=playing.id; playing=null;
+  const row=document.querySelector(`.clip[data-id="${id}"]`);
+  if(row){ row.classList.remove("playing"); row.querySelector(".play").innerHTML=PLAY; row.querySelector(".fill").style.clipPath="inset(0 100% 0 0)"; }
+}
+function startPreview(id){
+  stopPreview();
+  const c=byId(id); if(!c) return;
+  const p={id, start:performance.now(), ms:c.secs*1000};
+  if(LIVE){
+    p.audio=new Audio(c.preview||`previews/${c.id}.mp3`);
+    p.audio.addEventListener("loadedmetadata",()=>{ if(isFinite(p.audio.duration)) p.ms=p.audio.duration*1000; });
+    p.audio.addEventListener("ended",stopPreview);
+    p.audio.play().catch(()=>{ toast(t("err")); stopPreview(); });
+  } else {
+    /* Preview mode: the browser's own voice reads the line as a stand-in for the real preview file */
+    try{ const u=new SpeechSynthesisUtterance(c.text); u.lang=c.lang==="el"?"el-GR":"en-US"; u.rate=1.02; speechSynthesis.cancel(); speechSynthesis.speak(u); }
+    catch{ toast(t("noSpeech")); }
+  }
+  playing=p;
+  const row=document.querySelector(`.clip[data-id="${id}"]`);
+  if(row){ row.classList.add("playing"); row.querySelector(".play").innerHTML=STOP; }
+  const fill=row&&row.querySelector(".fill");
+  const step=()=>{ if(playing!==p) return;
+    const k = p.audio && p.audio.duration ? p.audio.currentTime/p.audio.duration : (performance.now()-p.start)/p.ms;
+    if(fill) fill.style.clipPath=`inset(0 ${Math.max(0,100-Math.min(1,k)*100)}% 0 0)`;
+    if(!p.audio && k>=1){ stopPreview(); return; }
+    p.raf=requestAnimationFrame(step); };
+  p.raf=requestAnimationFrame(step);
+}
+
+/* ---------- Cart ---------- */
+function toggleCart(id){
+  if(S.cart.includes(id)) S.cart=S.cart.filter(x=>x!==id);
+  else { if(S.cart.length>=MAX_CART){ toast(t("max")); return; } S.cart.push(id); toast(t("addedToast")); }
+  renderCart(); renderLog();
+}
+function openCart(open){ $("#drawer").hidden=!open; $("#scrim").hidden=!open; if(open) $("#closeCart").focus(); }
+
+async function checkout(){
+  if(!S.cart.length) return;
+  if(!LIVE){
+    $("#dpItems").textContent=t("items")(S.cart.length); $("#dpTotal").textContent=money(cartTotal());
+    $("#demoPay").hidden=false; $("#dpPay").focus(); return;
+  }
+  const btn=$("#checkout"); btn.disabled=true;
+  try{
+    const r=await fetch("/api/checkout",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({ids:S.cart})});
+    const d=await r.json(); if(!r.ok||!d.url) throw new Error(d.error||"checkout");
+    location.href=d.url;
+  }catch{ toast(t("err")); btn.disabled=false; }
+}
+
+/* ---------- Download page ---------- */
+function showDownloads(list, expiresAt){
+  stopPreview(); openCart(false);
+  $("#shop").hidden=true; $("#downloads").hidden=false; $("#dlNote").hidden=true;
+  const d=new Date(expiresAt).toLocaleString(S.ui==="el"?"el-GR":"en-US",{dateStyle:"medium",timeStyle:"short"});
+  $("#dlExp").textContent=t("exp")(d);
+  $("#dlList").innerHTML=list.map(c=>`<li><span><span class="mono" style="color:var(--sea)">${c.id}</span> ${esc(c.title)}</span>${
+    c.url?`<a href="${esc(c.url)}">${t("download")}</a>`:`<button data-demodl="${c.id}">${t("download")}</button>`}</li>`).join("");
+  window.scrollTo(0,0);
+}
+async function loadOrder(sessionId){
+  try{
+    const r=await fetch("/api/order?session_id="+encodeURIComponent(sessionId));
+    const d=await r.json();
+    if(r.status===410){ toast(t("expired")); return; }
+    if(!r.ok) throw new Error(d.error);
+    S.cart=[]; renderCart();
+    showDownloads(d.clips, d.expires_at);
+  }catch{ toast(t("err")); }
+}
+function backToShop(){
+  $("#downloads").hidden=true; $("#shop").hidden=false;
+  if(LIVE && location.search) history.replaceState(null,"",location.pathname);
+  renderLog();
+}
+
+/* ---------- Events ---------- */
+document.addEventListener("click",(e)=>{
+  const b=e.target.closest("button,a"); if(!b) return;
+  if(b.dataset.play){ playing&&playing.id===b.dataset.play ? stopPreview() : startPreview(b.dataset.play); }
+  else if(b.dataset.add) toggleCart(b.dataset.add);
+  else if(b.dataset.rm) toggleCart(b.dataset.rm);
+  else if(b.dataset.cat){ S.cat=b.dataset.cat; renderCats(); renderLog(); }
+  else if(b.dataset.cl){ S.cl=b.dataset.cl; document.querySelectorAll("[data-cl]").forEach(x=>x.setAttribute("aria-pressed",x===b)); renderLog(); }
+  else if(b.dataset.ui){ S.ui=b.dataset.ui; store.set("fv.ui",S.ui); renderAll(); }
+  else if(b.dataset.demodl){ const n=$("#dlNote"); n.textContent=t("demoDl")(b.dataset.demodl); n.hidden=false; }
+  else if(b.id==="home"){ e.preventDefault(); backToShop(); }
+});
+$("#openCart").onclick=()=>openCart(true);
+$("#closeCart").onclick=()=>openCart(false);
+$("#scrim").onclick=()=>openCart(false);
+$("#checkout").onclick=checkout;
+$("#back").onclick=backToShop;
+$("#q").addEventListener("input",(e)=>{ S.q=e.target.value; renderLog(); });
+$("#dpCancel").onclick=()=>{ $("#demoPay").hidden=true; };
+$("#dpPay").onclick=()=>{
+  const bought=S.cart.map(id=>({id,title:byId(id).title}));
+  $("#demoPay").hidden=true; S.cart=[]; renderCart();
+  showDownloads(bought, Date.now()+24*3600e3);
+};
+document.addEventListener("keydown",(e)=>{ if(e.key==="Escape"){ openCart(false); $("#demoPay").hidden=true; }});
+
+/* ---------- Start ---------- */
+(async function init(){
+  if(LIVE){ try{ const r=await fetch("clips.json",{cache:"no-store"}); if(r.ok) S.clips=await r.json(); }catch{} }
+  renderAll();
+  if(LIVE){
+    const sp=new URLSearchParams(location.search);
+    if(sp.get("session_id")) loadOrder(sp.get("session_id"));
+  }
+})();
+</script>

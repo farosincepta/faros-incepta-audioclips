@@ -1,0 +1,172 @@
+[
+ {
+  "id": "FV-0001",
+  "cat": "intro",
+  "lang": "en",
+  "title": "Welcome back to the channel",
+  "voice": "Warm male",
+  "secs": 5,
+  "text": "Hey everyone, welcome back to the channel. Let's get into it.",
+  "file": "FV-0001.mp3"
+ },
+ {
+  "id": "FV-0002",
+  "cat": "intro",
+  "lang": "en",
+  "title": "Like and subscribe outro",
+  "voice": "Bright female",
+  "secs": 6,
+  "text": "Thanks for watching! If you enjoyed this, hit like and subscribe. See you next time.",
+  "file": "FV-0002.mp3"
+ },
+ {
+  "id": "FV-0003",
+  "cat": "intro",
+  "lang": "el",
+  "title": "Καλώς ήρθατε στο κανάλι",
+  "voice": "Ζεστή ανδρική",
+  "secs": 5,
+  "text": "Γεια σας και καλώς ήρθατε ξανά στο κανάλι. Πάμε να ξεκινήσουμε.",
+  "file": "FV-0003.mp3"
+ },
+ {
+  "id": "FV-0004",
+  "cat": "intro",
+  "lang": "en",
+  "title": "Calm podcast intro",
+  "voice": "Soft female",
+  "secs": 7,
+  "text": "You're listening to the show. Grab a coffee, sit back, and let's talk.",
+  "file": "FV-0004.mp3"
+ },
+ {
+  "id": "FV-0005",
+  "cat": "business",
+  "lang": "en",
+  "title": "After-hours voicemail",
+  "voice": "Professional female",
+  "secs": 9,
+  "text": "Thank you for calling. Our office is closed right now. Please leave your name and number after the tone, and we'll call you back.",
+  "file": "FV-0005.mp3"
+ },
+ {
+  "id": "FV-0006",
+  "cat": "business",
+  "lang": "el",
+  "title": "Τηλεφωνητής εκτός ωραρίου",
+  "voice": "Επαγγελματική γυναικεία",
+  "secs": 8,
+  "text": "Ευχαριστούμε που καλέσατε. Το γραφείο μας είναι κλειστό. Αφήστε το μήνυμά σας μετά τον ήχο.",
+  "file": "FV-0006.mp3"
+ },
+ {
+  "id": "FV-0007",
+  "cat": "business",
+  "lang": "en",
+  "title": "Thanks for holding",
+  "voice": "Professional male",
+  "secs": 6,
+  "text": "Thanks for holding. Your call is important to us. Someone will be with you shortly.",
+  "file": "FV-0007.mp3"
+ },
+ {
+  "id": "FV-0008",
+  "cat": "business",
+  "lang": "el",
+  "title": "Ευχαριστούμε για την αναμονή",
+  "voice": "Επαγγελματική ανδρική",
+  "secs": 6,
+  "text": "Ευχαριστούμε για την αναμονή. Σε λίγο θα σας εξυπηρετήσουμε.",
+  "file": "FV-0008.mp3"
+ },
+ {
+  "id": "FV-0009",
+  "cat": "sports",
+  "lang": "en",
+  "title": "Goal call, stadium style",
+  "voice": "Stadium announcer",
+  "secs": 5,
+  "text": "Goooal! What a strike! The crowd is on its feet!",
+  "file": "FV-0009.mp3"
+ },
+ {
+  "id": "FV-0010",
+  "cat": "sports",
+  "lang": "el",
+  "title": "Γκολ! Εκφωνητής γηπέδου",
+  "voice": "Εκφωνητής γηπέδου",
+  "secs": 5,
+  "text": "Γκοοολ! Τι σουτ! Το γήπεδο σηκώθηκε όρθιο!",
+  "file": "FV-0010.mp3"
+ },
+ {
+  "id": "FV-0011",
+  "cat": "sports",
+  "lang": "en",
+  "title": "Kick-off announcement",
+  "voice": "Stadium announcer",
+  "secs": 7,
+  "text": "Ladies and gentlemen, the teams are on the pitch. Kick-off is moments away!",
+  "file": "FV-0011.mp3"
+ },
+ {
+  "id": "FV-0012",
+  "cat": "sports",
+  "lang": "el",
+  "title": "Οι ενδεκάδες των ομάδων",
+  "voice": "Εκφωνητής γηπέδου",
+  "secs": 6,
+  "text": "Κυρίες και κύριοι, ακολουθούν οι ενδεκάδες των δύο ομάδων.",
+  "file": "FV-0012.mp3"
+ },
+ {
+  "id": "FV-0013",
+  "cat": "gaming",
+  "lang": "en",
+  "title": "Stream starting soon",
+  "voice": "Hype male",
+  "secs": 5,
+  "text": "Stream starting soon! Grab your snacks, we're going live in a minute.",
+  "file": "FV-0013.mp3"
+ },
+ {
+  "id": "FV-0014",
+  "cat": "gaming",
+  "lang": "en",
+  "title": "Round won",
+  "voice": "Arena announcer",
+  "secs": 3,
+  "text": "Round won! Flawless!",
+  "file": "FV-0014.mp3"
+ },
+ {
+  "id": "FV-0015",
+  "cat": "events",
+  "lang": "en",
+  "title": "Please take your seats",
+  "voice": "Event MC",
+  "secs": 6,
+  "text": "Ladies and gentlemen, please take your seats. The program is about to begin.",
+  "file": "FV-0015.mp3"
+ },
+ {
+  "id": "FV-0016",
+  "cat": "events",
+  "lang": "el",
+  "title": "Χρόνια πολλά!",
+  "voice": "Χαρούμενη γυναικεία",
+  "secs": 4,
+  "text": "Χρόνια πολλά! Να τα εκατοστήσεις, με υγεία και χαρά!",
+  "file": "FV-0016.mp3"
+ },
+ {
+  "id": "FV-0017",
+  "cat": "events",
+  "lang": "en",
+  "title": "Happy birthday announcer",
+  "voice": "Event MC",
+  "secs": 5,
+  "text": "And now, put your hands together for the birthday star of the night!",
+  "file": "FV-0017.mp3"
+ }
+]
