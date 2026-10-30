@@ -1,11 +1,11 @@
-name = "fanari-voices"
+name = "faros-incepta-voices"
 pages_build_output_dir = "public"
 compatibility_date = "2026-09-01"
 
 # Private storage for the full clips. Buyers can only reach these through /api/download.
 [[r2_buckets]]
 binding = "CLIPS"
-bucket_name = "fanari-voices-clips"
+bucket_name = "faros-incepta-voices-clips"
 
 [vars]
 DOWNLOAD_HOURS = "24"
