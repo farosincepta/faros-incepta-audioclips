@@ -1,0 +1,14 @@
+name = "fanari-voices"
+pages_build_output_dir = "public"
+compatibility_date = "2026-09-01"
+
+# Private storage for the full clips. Buyers can only reach these through /api/download.
+[[r2_buckets]]
+binding = "CLIPS"
+bucket_name = "fanari-voices-clips"
+
+[vars]
+DOWNLOAD_HOURS = "24"
+# STRIPE_TAX = "on"   # turn on after enabling Stripe Tax in your Stripe dashboard
+
+# STRIPE_SECRET_KEY is a secret: add it in Cloudflare (Settings → Variables and Secrets), never in this file.
