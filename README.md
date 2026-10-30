@@ -24,7 +24,7 @@ Full clips are never public. `/api/download` only hands a file over after Stripe
    - Workers & Pages → Create → Pages → Connect to Git → pick the repository. Framework preset: None. Build command: none. Output folder: `public`.
    - The bucket is linked by `wrangler.toml` under the name `CLIPS`. If Cloudflare asks you to add it yourself: Settings → Bindings → R2 bucket, variable name `CLIPS`, bucket `faros-incepta-voices-clips`.
    - Settings → Variables and Secrets → add secret `STRIPE_SECRET_KEY` with your test key, then redeploy.
-4. **Domain.** In the Pages project: Custom domains → add `audioclips.farosincepta.com`. Cloudflare shows a CNAME target like `faros-incepta-voices.pages.dev`. Where farosincepta.com is registered, open its DNS settings and add a **CNAME** record: host `audioclips`, answer `faros-incepta-voices.pages.dev`.
+4. **Domain.** In the Pages project: Custom domains → add `audioclips.farosincepta.com`. Cloudflare shows a CNAME target like `faros-incepta-audioclips.pages.dev`. Where farosincepta.com is registered, open its DNS settings and add a **CNAME** record: host `audioclips`, answer `faros-incepta-audioclips.pages.dev`.
 5. **Test.** Open https://audioclips.farosincepta.com, buy a clip, and pay with Stripe's test card `4242 4242 4242 4242`, any future date, any CVC. You should land on the download page.
 6. **Go live.** Replace `STRIPE_SECRET_KEY` with your live key (`sk_live_...`) and redeploy.
 
@@ -65,6 +65,6 @@ Full clips are never public. `/api/download` only hands a file over after Stripe
 |---|---|
 | Web address | audioclips.farosincepta.com |
 | GitHub repository | `faros-incepta-audioclips` |
-| Cloudflare Pages project | `faros-incepta-voices` (Cloudflare can't rename a project; buyers never see it) |
+| Cloudflare Pages project | `faros-incepta-audioclips` |
 | R2 bucket for full clips | `faros-incepta-voices-clips` |
 | Clip ids | `FI-0001`, `FI-0002`, … |
