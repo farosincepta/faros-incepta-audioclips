@@ -281,7 +281,7 @@ const PRICE_CENTS = 100;
 const MAX_CART = 20;
 
 /* Live on the real domain (or local dev); preview mode everywhere else. */
-const LIVE = /(^|\.)farosincepta\.com$/.test(location.hostname) || location.hostname === "localhost" || location.hostname === "127.0.0.1";
+const LIVE = /(^|\.)farosincepta\.com$/.test(location.hostname) || /(^|\.)faros-incepta-audioclips\.pages\.dev$/.test(location.hostname) || location.hostname === "localhost" || location.hostname === "127.0.0.1";
 
 /* ---------- Words ---------- */
 const T = {
@@ -408,15 +408,16 @@ function startPreview(id){
   stopPreview();
   const c=byId(id); if(!c) return;
   const p={id, start:performance.now(), ms:c.secs*1000};
+  /* Stand-in when there is no preview file yet: the browser's own voice reads the line */
+  const speak=()=>{ try{ const u=new SpeechSynthesisUtterance(c.text); u.lang=c.lang==="el"?"el-GR":"en-US"; u.rate=1.02; speechSynthesis.cancel(); speechSynthesis.speak(u); }
+    catch{ toast(t("noSpeech")); } };
   if(LIVE){
     p.audio=new Audio(c.preview||`previews/${c.id}.mp3`);
     p.audio.addEventListener("loadedmetadata",()=>{ if(isFinite(p.audio.duration)) p.ms=p.audio.duration*1000; });
     p.audio.addEventListener("ended",stopPreview);
-    p.audio.play().catch(()=>{ toast(t("err")); stopPreview(); });
+    p.audio.play().catch(()=>{ if(playing!==p) return; p.audio=null; p.start=performance.now(); speak(); });
   } else {
-    /* Preview mode: the browser's own voice reads the line as a stand-in for the real preview file */
-    try{ const u=new SpeechSynthesisUtterance(c.text); u.lang=c.lang==="el"?"el-GR":"en-US"; u.rate=1.02; speechSynthesis.cancel(); speechSynthesis.speak(u); }
-    catch{ toast(t("noSpeech")); }
+    speak();
   }
   playing=p;
   const row=document.querySelector(`.clip[data-id="${id}"]`);
